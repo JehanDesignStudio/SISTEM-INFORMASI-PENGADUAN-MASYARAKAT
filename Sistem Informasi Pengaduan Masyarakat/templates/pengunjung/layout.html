@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistem Pengaduan{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            background-color: #198754;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #157347;
+            display: block;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #198754 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand px-3" href="#">UIN IB - Sistem Pengaduan</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-3">
+                <h5 class="text-white mb-4">Menu</h5>
+                <ul class="nav flex-column">
+                    {% if session['role'] == 'pengunjung' %}
+                        <li class="nav-item mb-2"><a class="nav-link text-white" href="{{ url_for('form_pengaduan') }}">Form Pengaduan</a></li>
+                        <li class="nav-item mb-2"><a class="nav-link text-white" href="{{ url_for('daftar_pengaduan') }}">Riwayat Pengaduan</a></li>
+                    {% elif session['role'] == 'admin' %}
+                        <li class="nav-item mb-2"><a class="nav-link text-white" href="{{ url_for('admin_dashboard') }}">Dashboard Admin</a></li>
+                        <li class="nav-item mb-2"><a class="nav-link text-white" href="{{ url_for('export_pdf') }}">Export PDF</a></li>
+                        <li class="nav-item mb-2"><a class="nav-link text-white" href="{{ url_for('export_excel') }}">Export Excel</a></li>
+                    {% endif %}
+                    <li class="nav-item mt-3"><a class="nav-link text-white" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <main class="col-md-9 col-lg-10 p-4">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

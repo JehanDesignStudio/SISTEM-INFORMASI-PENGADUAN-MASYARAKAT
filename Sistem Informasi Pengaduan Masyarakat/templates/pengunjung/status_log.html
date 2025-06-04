@@ -1,0 +1,40 @@
+{% extends 'pengunjung/layout.html' %}
+{% block title %}Riwayat Status{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title mb-4">Riwayat Status Pengaduan</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Status</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                        <tr>
+                            <td>
+                                <span class="badge bg-primary">{{ log[0] }}</span>
+                            </td>
+                            <td>{{ log[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                    {% if logs|length == 0 %}
+                        <tr>
+                            <td colspan="2" class="text-center text-muted">Belum ada riwayat status.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ url_for('daftar_pengaduan') }}" class="btn btn-secondary mt-3">
+            &larr; Kembali ke Daftar Pengaduan
+        </a>
+    </div>
+</div>
+{% endblock %}

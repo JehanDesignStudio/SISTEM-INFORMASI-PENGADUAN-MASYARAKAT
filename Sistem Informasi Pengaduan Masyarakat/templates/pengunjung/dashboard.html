@@ -1,0 +1,35 @@
+{% extends 'pengunjung/layout.html' %}
+{% block title %}Form Pengaduan{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Form Pengaduan</h5>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama Lengkap</label>
+                <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+            </div>
+            <div class="mb-3">
+                <label for="kategori" class="form-label">Kategori</label>
+                <select name="kategori" id="kategori" class="form-select" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    <option value="Fasilitas Umum">Fasilitas Umum</option>
+                    <option value="Keamanan">Keamanan</option>
+                    <option value="Pelayanan">Pelayanan</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label">Deskripsi Pengaduan</label>
+                <textarea name="deskripsi" id="deskripsi" rows="4" class="form-control" placeholder="Tulis deskripsi pengaduan Anda" required></textarea>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success">Kirim Pengaduan</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

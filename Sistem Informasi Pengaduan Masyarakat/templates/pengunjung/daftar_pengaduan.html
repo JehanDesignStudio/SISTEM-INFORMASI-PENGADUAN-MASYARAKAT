@@ -1,0 +1,39 @@
+{% extends 'pengunjung/layout.html' %}
+{% block title %}Daftar Pengaduan{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Pengaduan Anda</h2>
+
+<table class="table table-striped table-hover align-middle">
+    <thead class="table-primary">
+        <tr>
+            <th>Nama</th>
+            <th>Kategori</th>
+            <th>Deskripsi</th>
+            <th>Status</th>
+            <th>Riwayat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in pengaduan %}
+        <tr>
+            <td>{{ row[1] }}</td> <!-- Nama -->
+            <td>{{ row[2] }}</td> <!-- Kategori -->
+            <td>{{ row[3] }}</td> <!-- Deskripsi -->
+            <td>
+                <span class="badge 
+                    {% if row[5] == 'Diterima' %} bg-secondary 
+                    {% elif row[5] == 'Diproses' %} bg-warning text-dark 
+                    {% elif row[5] == 'Selesai' %} bg-success 
+                    {% else %} bg-light text-dark {% endif %}">
+                    {{ row[5] }}
+                </span>
+            </td>
+            <td>
+                <a href="{{ url_for('riwayat_status', pengaduan_id=row[0]) }}" class="btn btn-sm btn-outline-info">Lihat</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
